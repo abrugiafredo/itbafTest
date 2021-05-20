@@ -1,9 +1,8 @@
-package com.example.itbaftest.model;
+package com.example.itbaftest.model.vehiculo;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class Opcional {

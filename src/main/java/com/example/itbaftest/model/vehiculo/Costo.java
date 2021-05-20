@@ -1,4 +1,4 @@
-package com.example.itbaftest.model;
+package com.example.itbaftest.model.vehiculo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

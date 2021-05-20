@@ -1,4 +1,4 @@
-package com.example.itbaftest.model;
+package com.example.itbaftest.model.vehiculo;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
