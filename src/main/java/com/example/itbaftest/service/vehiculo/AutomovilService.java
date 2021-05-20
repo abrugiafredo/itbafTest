@@ -7,6 +7,8 @@ import com.example.itbaftest.repository.vehiculo.AutomovilRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AutomovilService {
 
@@ -44,5 +46,11 @@ public class AutomovilService {
     }
 
 
+    public Automovil getAutomovil(Long id) {
+        return this.automovilRepository.findById(id).orElseThrow(()->new ExceptionApi(3001,"El automovil no esta registrado", id.toString()));
+    }
 
+    public List<Automovil> listAutomovil() {
+        return this.automovilRepository.findAll();
+    }
 }
