@@ -1,6 +1,7 @@
 package com.example.itbaftest.controller.vehiculo;
 
 import com.example.itbaftest.dto.vehiculo.AutomovilDTO;
+import com.example.itbaftest.dto.vehiculo.CotizacionDTO;
 import com.example.itbaftest.model.vehiculo.Automovil;
 import com.example.itbaftest.service.vehiculo.AutomovilService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,22 +25,35 @@ public class AutomovilController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Automovil> getAutomovil(@PathVariable(value = "id") Long id){
-        return ResponseEntity.ok().body(this.automovilService.getAutomovil(id));
+        Automovil automovil=this.automovilService.getAutomovil(id);
+        automovil.setPrecio(this.automovilService.calcularCotizacion(automovil));
+        return ResponseEntity.ok().body(automovil);
+    }
+    @GetMapping("/cotizacion/{id}")
+    public ResponseEntity<CotizacionDTO> obtenerCotizacion(@PathVariable(value = "id") Long id){
+
+        return ResponseEntity.ok().body(this.automovilService.obtenerCotizacion(id));
     }
 
     @GetMapping
     public List<Automovil> listAutomovil(){
-        return this.automovilService.listAutomovil();
+        List<Automovil> automovils=this.automovilService.listAutomovil();
+        automovils.forEach(a->a.setPrecio(this.automovilService.calcularCotizacion(a)));
+        return automovils;
     }
 
 
     @PostMapping
     public ResponseEntity<Automovil> crearAutomovil(@RequestBody @Valid AutomovilDTO automovilDTO){
-        return ResponseEntity.status(HttpStatus.CREATED).body(this.automovilService.nuevoAutomovil(automovilDTO));
+        Automovil automovil=this.automovilService.nuevoAutomovil(automovilDTO);
+        automovil.setPrecio(this.automovilService.calcularCotizacion(automovil));
+        return ResponseEntity.status(HttpStatus.CREATED).body(automovil);
     }
     @PutMapping
     public ResponseEntity<Automovil> modificarAutomovil(@RequestBody @Valid AutomovilDTO automovilDTO){
-        return ResponseEntity.status(HttpStatus.OK).body(this.automovilService.modificarAutomovil(automovilDTO));
+        Automovil automovil=this.automovilService.modificarAutomovil(automovilDTO);
+        automovil.setPrecio(this.automovilService.calcularCotizacion(automovil));
+        return ResponseEntity.status(HttpStatus.OK).body(automovil);
     }
     @DeleteMapping("/eliminar/{id}")
     public HttpStatus eliminarAutomovil(@PathVariable(value = "id") Long id){

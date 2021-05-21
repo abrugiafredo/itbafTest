@@ -8,8 +8,8 @@ import java.util.Set;
 public class AutomovilDTO {
     private Long id;
 
-    @NotBlank
-    @NotEmpty
+    @NotBlank(message = "El nombre es requerido")
+    @NotEmpty(message = "El nombre es requerido")
     private String nombre;
 
     private Set<String> opcionales;

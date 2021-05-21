@@ -1,8 +1,10 @@
 package com.example.itbaftest.service.vehiculo;
 
 import com.example.itbaftest.dto.vehiculo.AutomovilDTO;
+import com.example.itbaftest.dto.vehiculo.CotizacionDTO;
 import com.example.itbaftest.model.exception.ExceptionApi;
 import com.example.itbaftest.model.vehiculo.Automovil;
+import com.example.itbaftest.model.vehiculo.Opcional;
 import com.example.itbaftest.repository.vehiculo.AutomovilRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,5 +55,23 @@ public class AutomovilService {
 
     public List<Automovil> listAutomovil() {
         return this.automovilRepository.findAll();
+    }
+
+    public CotizacionDTO obtenerCotizacion(Long id) {
+        Automovil automovil=this.automovilRepository.findById(id).orElseThrow(()->new ExceptionApi(3001,"El automovil no esta registrado", id.toString()));
+        double valor=this.calcularCotizacion(automovil);
+        CotizacionDTO cotizacionDTO=new CotizacionDTO();
+        cotizacionDTO.setPrecio(valor);
+        return cotizacionDTO;
+    }
+
+    public double calcularCotizacion(Automovil automovil) {
+        Double valor=0d;
+        valor+=automovil.getVariante().getPrecio();
+        if(!automovil.getOpcionales().isEmpty()) {
+            double valorOpciones=automovil.getOpcionales().stream().mapToDouble(Opcional::getPrecio).sum();
+            valor+=valorOpciones;
+        }
+        return valor;
     }
 }

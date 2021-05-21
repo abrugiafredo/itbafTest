@@ -1,6 +1,7 @@
 package com.example.itbaftest.model.vehiculo;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -19,6 +20,9 @@ public class Automovil {
     private Set<Opcional> opcionales;
 
 
+    @Transient
+    private Double precio;
+
     public Long getId() {
         return id;
     }
@@ -36,10 +40,21 @@ public class Automovil {
     }
 
     public Set<Opcional> getOpcionales() {
+        if(this.opcionales==null){
+            this.opcionales=new HashSet<>();
+        }
         return opcionales;
     }
 
     public void setOpcionales(Set<Opcional> opcionales) {
         this.opcionales = opcionales;
+    }
+
+    public Double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(Double precio) {
+        this.precio = precio;
     }
 }
