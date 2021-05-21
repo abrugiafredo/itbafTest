@@ -18,8 +18,8 @@ public class OptionalService {
         this.opcionalRepository = opcionalRepository;
     }
 
-    public Opcional obtenerOpcionalByNombre(String nombre){
-        Optional<Opcional> opcionalOp=this.opcionalRepository.findByNombre(nombre);
-        return opcionalOp.orElseThrow(() -> new ExceptionApi(1000,"No existe el opcional",nombre));
+    public Opcional obtenerOpcionalByNombre(String codigo){
+        Optional<Opcional> opcionalOp=this.opcionalRepository.findByCodigo(codigo);
+        return opcionalOp.orElseThrow(() -> new ExceptionApi(1000,"No existe el opcional",codigo));
     }
 }

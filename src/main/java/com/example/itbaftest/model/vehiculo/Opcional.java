@@ -3,6 +3,7 @@ package com.example.itbaftest.model.vehiculo;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Opcional {
@@ -18,8 +19,8 @@ public class Opcional {
     @NotEmpty
     private String nombre;
 
-    @OneToOne
-    private Costo costo;
+    @NotNull
+    private Double precio;
 
 
     public String getCodigo() {
@@ -46,11 +47,11 @@ public class Opcional {
         this.idOpcional = idOpcional;
     }
 
-    public Costo getCosto() {
-        return costo;
+    public Double getPrecio() {
+        return precio;
     }
 
-    public void setCosto(Costo costo) {
-        this.costo = costo;
+    public void setPrecio(Double precio) {
+        this.precio = precio;
     }
 }

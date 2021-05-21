@@ -41,5 +41,5 @@ Las operaciones de alta/consulta deberán almacenar/mostrar el costo del mismo.
 Se evaluará tecnologías para desarrollar dicha API Rest (Spring MVC, CXF, Jersey,
 etc.), su persistencia (JDBC, Spring JDBC, Hibernate, etc.) y BD de datos (MariaDB,
 MySQL, Oracle, MongoDB, etc.) seleccionada para la resolución del ejercicio, por otro
-lado se evaluarán metodologías y herramientas de deployd y formas de exposición (es
+lado se evaluarán metodologías y herramientas de deployd y formas de exposición (es
 un plus publicar la api en la nube).

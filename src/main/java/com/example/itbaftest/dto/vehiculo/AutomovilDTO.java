@@ -1,11 +1,17 @@
 package com.example.itbaftest.dto.vehiculo;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
 
 public class AutomovilDTO {
     private Long id;
+
+    @NotBlank
+    @NotEmpty
     private String nombre;
+
     private Set<String> opcionales;
 
     public Long getId() {

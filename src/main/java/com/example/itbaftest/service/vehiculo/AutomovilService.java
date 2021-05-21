@@ -33,6 +33,7 @@ public class AutomovilService {
     }
 
     public Automovil modificarAutomovil(AutomovilDTO automovilDTO){
+        this.automovilRepository.findById(automovilDTO.getId()).orElseThrow(()->new ExceptionApi(3001,"El automovil no esta registrado",automovilDTO.getId().toString()));
         Automovil automovil=new Automovil();
         automovil.setId(automovilDTO.getId());
         automovil.setVariante(this.varianteService.obtenerVarianteNombre(automovilDTO.getNombre()));
